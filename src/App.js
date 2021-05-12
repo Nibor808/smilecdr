@@ -1,14 +1,21 @@
-import React, { Component } from "react";
-import { getPatients } from "./services";
+import React, { Component } from 'react';
+import { getPatients } from './services';
+import Table from './components/Table';
 
 class App extends Component {
+  state = {
+    patients: [],
+  };
+
   componentDidMount() {
-    getPatients().then((res) => {
+    getPatients().then(res => {
       console.log(res);
+      this.setState({ patients: res.data.entry });
     });
   }
+
   render() {
-    return <p>Check the console!</p>;
+    return <Table patients={this.state.patients} />;
   }
 }
 
