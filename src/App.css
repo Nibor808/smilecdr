@@ -8,11 +8,12 @@ body {
 }
 
 .patient-table {
-    width: 100%;
+    min-height: 500px;
 }
 
 .patient > td {
     text-align: center;
+    padding: 5px;
 }
 
 .search {
@@ -32,6 +33,7 @@ body {
 .search-buttons {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .error {

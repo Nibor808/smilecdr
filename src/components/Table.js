@@ -137,19 +137,7 @@ class Table extends React.Component {
     if (!patients) return <div>Loading...</div>;
 
     return (
-      <div>
-        <table className='patient-table'>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Gender</th>
-              <th>Birth Date</th>
-            </tr>
-          </thead>
-          <tbody>{this.renderPatients()}</tbody>
-        </table>
-
+      <React.Fragment>
         <div className='search'>
           <h3>Search</h3>
 
@@ -188,7 +176,21 @@ class Table extends React.Component {
 
         {searchDate && <p className='success'>{this.renderSearchDate()}</p>}
         {searchError && <p className='error'>{searchError}</p>}
-      </div>
+
+        <div className='patient-table'>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Birth Date</th>
+              </tr>
+            </thead>
+            <tbody>{this.renderPatients()}</tbody>
+          </table>
+        </div>
+      </React.Fragment>
     );
   }
 }
