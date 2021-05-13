@@ -1,11 +1,43 @@
+html,
+body {
+    width: 100%;
+}
+
+#root {
+    padding: 20px;
+}
+
 .patient-table {
-    width: 100%
+    width: 100%;
 }
 
 .patient > td {
     text-align: center;
 }
 
+.search {
+    width: 15%;
+}
+
 .search-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-inputs > label:last-of-type,
+.search-buttons {
     margin-top: 20px;
+}
+
+.search-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
 }

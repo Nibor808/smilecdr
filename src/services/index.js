@@ -5,6 +5,8 @@ const axios = _axios.create({
 });
 
 export const getPatients = (name = '', dob = '') => {
+  if (name && dob) return axios.get(`/Patient?birthdate=${dob}&name=${name}`);
+
   return axios.get('/Patient');
 };
 

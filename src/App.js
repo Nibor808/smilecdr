@@ -9,13 +9,17 @@ class App extends Component {
 
   componentDidMount() {
     getPatients().then(res => {
-      console.log(res);
       this.setState({ patients: res.data.entry });
     });
   }
 
   render() {
-    return <Table patients={this.state.patients} />;
+    return (
+      <React.Fragment>
+        <h2>HAPI FHIR Playground</h2>
+        <Table patients={this.state.patients} />
+      </React.Fragment>
+    );
   }
 }
 
