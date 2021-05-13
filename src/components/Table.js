@@ -139,8 +139,6 @@ class Table extends React.Component {
     return (
       <React.Fragment>
         <div className='search'>
-          <h3>Search</h3>
-
           <div className='search-inputs'>
             <label htmlFor='name'>Name</label>
             <input

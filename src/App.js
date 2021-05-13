@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getPatients } from './services';
-import Table from './components/Table';
+//import Table from './components/Table';
+import Questionnaire from './components/Questionnaire';
 
 class App extends Component {
   state = {
@@ -16,12 +17,13 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <h2>HAPI FHIR Playground</h2>
+        <h1>HAPI FHIR Playground</h1>
 
-        <h3>Patient Search</h3>
-        <Table patients={this.state.patients} />
+        {/*<h2>Patient Search</h2>*/}
+        {/*<Table patients={this.state.patients} />*/}
 
-        <h3>Questionnaire</h3>
+        <h2>Questionnaire</h2>
+        <Questionnaire />
       </React.Fragment>
     );
   }
