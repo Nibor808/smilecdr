@@ -108,6 +108,7 @@ class Table extends React.Component {
       searchError: '',
       date: new Date(),
       searchDate: '',
+      searchResult: [],
     });
     this.renderPatients();
   };

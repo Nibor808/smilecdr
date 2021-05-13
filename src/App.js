@@ -17,7 +17,11 @@ class App extends Component {
     return (
       <React.Fragment>
         <h2>HAPI FHIR Playground</h2>
+
+        <h3>Patient Search</h3>
         <Table patients={this.state.patients} />
+
+        <h3>Questionnaire</h3>
       </React.Fragment>
     );
   }
