@@ -1,3 +1,7 @@
+:root {
+    --boxShadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
 html,
 body {
     height: 100%;
@@ -81,6 +85,31 @@ body {
     margin-right: 10px;
 }
 
+/* PRACTITIONER */
+.practitioners {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card {
+    box-shadow: var(--boxShadow);
+    padding: 10px;
+    width: 250px;
+    margin: 15px 0;
+    border-radius: 10px;
+}
+
+.card-head {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 5px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.card-head > img {
+    margin-right: 10px;
+}
 
 /* MEDIA QUERIES */
 @media only screen and (max-width: 767px) {

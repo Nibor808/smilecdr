@@ -182,7 +182,7 @@ class Table extends React.Component {
                 <th>ID</th>
                 <th>Name</th>
                 <th>Gender</th>
-                <th>Birth Date</th>
+                <th>Date of Birth</th>
               </tr>
             </thead>
             <tbody>{this.renderPatients()}</tbody>

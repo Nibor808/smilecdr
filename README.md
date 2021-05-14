@@ -1,57 +1,35 @@
 # HAPI FHIR Playground: Basic Test App
 
-This project is a skeleton project for querying data from the [HAPI FHIR public test server](http://hapi.fhir.org/baseR4)
+### Development
 
-### Getting Started:
+I didn't add any libraries other than a date picker.
 
-- [ ] Take a few minutes to familiarize yourself with the [FHIR Standard](http://hl7.org/fhir/) for health data exchange. In particular you might want to read the [Executive Summary](http://hl7.org/fhir/summary.html) and the [Developer Introduction](http://hl7.org/fhir/overview-dev.html)
+The instructions read `...and a date picker for date of birth.`.
 
-- [ ] In addition, take a few minutes to familiarize yourself with [React](https://reactjs.org/docs/getting-started.html).
+I used one which reduced the need to properly format the dates except for in `patientSearch`.
 
-- [ ] Please don't fork this repository. Clone this repository and set the git remote to your copy of the github repository and push it there.
+Consequently, the minimal styling that has been applied is straight css.
 
-- [ ] Run `npm install` to install depedencies and `npm start` to start the project. App runs on `http://localhost:3000/`
+Using `boostrap` or `materialui` for styling may have been simpler, but maybe not.
 
-### Basic Tasks:
+Using `moment.js` or `day.js` for the dates would have simplified things slightly.
 
-- [ ] Add a `Table` class component and populate it with results from the `getPatients()` function.
+I wasn't sure if you wanted all the components on one page or if I should implement a router and links. Elected to not
+implement the router.
 
-- [ ] Sort the table based on youngest birthdate to oldest.
+Practitioners DOB's, when present, were already formatted (YYYY/MM/DD), so I didn't implement any formatting there.
 
-* [ ] Add a search function to the page. Add two inputs to `Table` component - a textbox that takes in a name (it can be the first or last name of a patient), and a date picker for date of birth. Modify the query and function `getPatients()` to include search results for a `Patient` based on the name passed in, and the date of birth passed in from the date picker. The results should be reflected in the table. Use the [SearchParameters section](https://www.hl7.org/fhir/patient.html#search) to help with building your query. 
+If I had more time I might have displayed the questionnaire response in a better layout but chose to use the `<pre>` tag
+for expediency.
 
-* [ ] Apply validation to the inputs - the name box cannot contain non-alphabetic characters, and the date field must be a valid date structure (YYYY/MM/DD).
+Also may have used a modal for the `delete` confirmation in Practitioner but chose `window.confirm` again for
+expediency.
 
-* [ ] Output the time the request was made on the page to show the results are as of that time. Display in the following format `Mon 06 Mar 2017 at 00:00:00`. For example, `Results as of Mon 06 Mar 2017 at 00:00:00`
+### Challenges
 
-* [ ] Commit your work.
+The api doesn't always return usable data.
 
-### Intermediate Tasks:
+Api requests will often return the same data over and over again which makes it challenging when it is returning
+unusable data. eg no DOB's for sorting task.
 
-- [ ] Add `Questionnaire` componenent, generate a form using the `questionnaire.json` file in the `assets` folder. The form should have validation applied to each input and form input elements should be controlled component.
-
-- [ ] Using the results from the form, generate a [`QuestionnaireResponse`](https://www.hl7.org/fhir/questionnaireresponse.html). The `QuestionnaireResponse` should follow the structure outlined in the [Resource Content Section](https://www.hl7.org/fhir/questionnaireresponse.html#resource)
-
-- [ ] Display your results in a neat and clean manner.
-
-- [ ] Update the `Questionnaire` Component to be mobile-friendly.
-
-- [ ] Please include unit tests for your work.
-
-- [ ] Commit your work.
-
-### Advanced Tasks:
-
-- [ ] Refactor `Practitioner` class component into functional component using [React hooks](https://reactjs.org/docs/hooks-intro.html).
-
-- [ ] Add `PractitionerCard` component, display the each practitioner in card format, display data in proper format. ie. Date of birth in (YYYY/MM/DD) format, replace `undefined` value with `N/A`. Add Typechecking with [PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html).
-
-- [ ] Display loading state until the request is not complete.
-
-- [ ] Add a delete button in `PractitionerCard`, should ask for confirmation when clicked. Remove the particular `Practitioner` when confirmed. Note: No need to make server request.
-
-- [ ] Add [`ErrorBoundary`](https://reactjs.org/docs/error-boundaries.html) component, use this component to make sure it catches the javascript errors thrown from `Practitioner` component.
-
-- [ ] Commit your work.
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Waiting a few minutes seems to get new data.
