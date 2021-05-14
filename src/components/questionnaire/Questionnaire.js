@@ -6,15 +6,10 @@ import generateResponse from './generateResponse';
 import validateForm from './validateForm';
 
 class Questionnaire extends React.Component {
-  state = {
-    dob: '',
-    allergies: '',
-    gender: '',
-    country: '',
-    maritalStatus: '',
-    smoker: '',
-    alcohol: '',
-    errors: {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       dob: '',
       allergies: '',
       gender: '',
@@ -22,15 +17,27 @@ class Questionnaire extends React.Component {
       maritalStatus: '',
       smoker: '',
       alcohol: '',
-    },
-    response: '',
-  };
+      errors: {
+        dob: '',
+        allergies: '',
+        gender: '',
+        country: '',
+        maritalStatus: '',
+        smoker: '',
+        alcohol: '',
+      },
+      response: '',
+    };
 
-  handleSubmit = ev => {
+    /* binding this here as opposed to an arrow function to allow for easier testing */
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(ev) {
     ev.preventDefault();
 
     this.setState({ errors: validateForm(this.state) }, this.renderResponse);
-  };
+  }
 
   renderResponse() {
     if (!Object.keys(this.state.errors).length) {
@@ -49,7 +56,7 @@ class Questionnaire extends React.Component {
     const intoxicants = formJSON.item[2];
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} data-testid='questionnaire-form'>
         <div className='form-group radios'>
           <p>{allergies.text}</p>
           <input
@@ -251,7 +258,7 @@ class Questionnaire extends React.Component {
         </div>
 
         <div className='form-btns'>
-          <button type='submit' className='submit-btn'>
+          <button type='submit' className='submit-btn' id='submit-btn'>
             Submit
           </button>
 
@@ -270,7 +277,10 @@ class Questionnaire extends React.Component {
     if (!formJSON) return <div>Loading...</div>;
 
     return (
-      <div className='questionnaire-container'>
+      <div
+        className='questionnaire-container'
+        data-testid='questionnaire-container'
+      >
         <div className='questionnaire'>{this.renderForm()}</div>
         <div className='response'>
           <pre>{this.state.response}</pre>

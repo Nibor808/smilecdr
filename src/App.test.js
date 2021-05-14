@@ -4,6 +4,13 @@ import App from './App';
 
 test('renders learn react link', () => {
   const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const title = getByText(/HAPI FHIR Playground/i);
+  expect(title).toBeInTheDocument();
+});
+
+test('calls componentDiMount', () => {
+  const spy = jest.spyOn(App.prototype, 'componentDidMount');
+  render(<App />);
+
+  expect(spy).toHaveBeenCalled();
 });
