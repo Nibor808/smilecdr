@@ -12,6 +12,15 @@ body {
     padding: 20px;
 }
 
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+/* PATIENT TABLE */
 .patient-table {
     min-height: 500px;
 }
@@ -41,23 +50,65 @@ body {
     margin-bottom: 20px;
 }
 
+
+/* QUESTIONNAIRE */
 .questionnaire {
-    width: 15%;
+    width: 20%;
 }
 
 .form-group:not(.radios) {
     display: flex;
     flex-direction: column;
-}
-
-.submit-btn {
     margin-top: 20px;
 }
 
-.error {
-    color: red;
+.form-btns {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.success {
-    color: green;
+.questionnaire-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.questionnaire-container > .questionnaire {
+    margin-right: 100px;
+}
+
+.radios > label:last-of-type {
+    margin-right: 10px;
+}
+
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 767px) {
+    #root {
+        padding: 5px;
+    }
+
+    .search {
+        width: 50%;
+    }
+
+    .questionnaire-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .questionnaire-container > .questionnaire {
+        margin-right: 0;
+    }
+
+    .questionnaire {
+        width: 90%;
+        margin-bottom: 50px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .questionnaire-container > .questionnaire {
+        margin-right: 50px;
+    }
 }

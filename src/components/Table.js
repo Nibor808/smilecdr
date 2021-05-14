@@ -156,11 +156,11 @@ class Table extends React.Component {
             />
             {nameError && <small className='error'>{nameError}</small>}
 
-            <label htmlFor='datePicker'>
+            <label htmlFor='tDatePicker'>
               D.O.B. <small>(MM/DD/YYYY)</small>
             </label>
             <DatePicker
-              id='datePicker'
+              id='tDatePicker'
               selected={this.state.date}
               onChange={date => this.setState({ date })}
             />
