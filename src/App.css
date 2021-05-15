@@ -24,6 +24,13 @@ body {
     color: green;
 }
 
+.patient-container,
+.question-container,
+.practitioner-container {
+    padding-bottom: 40px;
+    border-bottom: 1px solid lightgrey;
+}
+
 /* PATIENT TABLE */
 .patient-table {
     min-height: 500px;
