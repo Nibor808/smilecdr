@@ -15,8 +15,20 @@ class Table extends React.Component {
     searchDate: '',
   };
 
+  getDate() {
+    const { date } = this.state;
+
+    let day = new Date(date).getDate();
+    if (day < 10) day = `0${day}`;
+    let month = new Date(date).getMonth() + 1;
+    if (month < 10) month = `0${month}`;
+    const year = new Date(date).getFullYear();
+
+    return `${year}-${month}-${day}`;
+  }
+
   searchForPatient = () => {
-    const { name, date } = this.state;
+    const { name } = this.state;
 
     if (!name.trim()) {
       return this.setState({ nameError: 'Enter a first or last name.' });
@@ -27,13 +39,7 @@ class Table extends React.Component {
       });
     }
 
-    let day = new Date(date).getDate();
-    if (day < 10) day = `0${day}`;
-    let month = new Date(date).getMonth() + 1;
-    if (month < 10) month = `0${month}`;
-    const year = new Date(date).getFullYear();
-
-    const searchDate = `${year}-${month}-${day}`;
+    const searchDate = this.getDate();
     this.setState({ isSearch: true });
 
     getPatients(name, searchDate).then(res => {
