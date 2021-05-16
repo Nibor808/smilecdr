@@ -58,7 +58,7 @@ class Questionnaire extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit} data-testid='questionnaire-form'>
-        <div className='form-group radios'>
+        <div className='radios'>
           <p>{allergies.text}</p>
           <input
             type='radio'
@@ -181,7 +181,7 @@ class Questionnaire extends React.Component {
           )}
         </div>
 
-        <div className='form-group radios'>
+        <div className='radios'>
           <p>{intoxicants.item[0].text}</p>
           <input
             type='radio'
@@ -221,7 +221,7 @@ class Questionnaire extends React.Component {
           {errors.smoker && <small className='error'>{errors.smoker}</small>}
         </div>
 
-        <div className='for-group radios'>
+        <div className='radios'>
           <p>{intoxicants.item[1].text}</p>
           <input
             type='radio'
