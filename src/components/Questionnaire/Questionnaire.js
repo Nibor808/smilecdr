@@ -289,7 +289,9 @@ class Questionnaire extends React.Component {
       >
         <div className='questionnaire'>{this.renderForm()}</div>
         <div className='response'>
-          <pre>{this.state.response}</pre>
+          <pre>
+            <span className='response-text'>{this.state.response}</span>
+          </pre>
         </div>
       </div>
     );
