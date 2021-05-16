@@ -2,6 +2,7 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { getPatients } from '../services';
+import Button from './Button';
 
 class Table extends React.Component {
   state = {
@@ -13,7 +14,14 @@ class Table extends React.Component {
     dateError: '',
     searchError: '',
     searchDate: '',
+    patients: [],
   };
+
+  componentDidMount() {
+    getPatients().then(res => {
+      this.setState({ patients: res.data.entry });
+    });
+  }
 
   getDate() {
     const { date } = this.state;
@@ -40,13 +48,14 @@ class Table extends React.Component {
     }
 
     const searchDate = this.getDate();
-    this.setState({ isSearch: true });
 
     getPatients(name, searchDate).then(res => {
       if (res.data.entry)
         this.setState({
+          isSearch: true,
           searchResult: res.data.entry,
           searchDate: res.data.meta.lastUpdated,
+          searchError: '',
         });
       else this.setState({ searchError: 'no results' });
     });
@@ -65,6 +74,7 @@ class Table extends React.Component {
         );
       }
 
+      /* first entry may not have a birthDate */
       if (!a.resource.birthDate && lastA) a = lastA;
       else if (!b.resource.birthDate && lastB) b = lastB;
 
@@ -79,8 +89,7 @@ class Table extends React.Component {
   }
 
   renderPatients() {
-    const { patients } = this.props;
-    const { isSearch, searchResult } = this.state;
+    const { isSearch, searchResult, patients } = this.state;
 
     const sorted = this.sortPatients(patients);
 
@@ -116,6 +125,7 @@ class Table extends React.Component {
       searchDate: '',
       searchResult: [],
     });
+
     this.renderPatients();
   };
 
@@ -123,22 +133,21 @@ class Table extends React.Component {
     const { searchDate } = this.state;
 
     const searchDateString = new Date(searchDate).toString();
-    const searchDateFormatted = searchDateString.substring(
+    const searchDateTrimmed = searchDateString.substring(
       0,
       searchDateString.indexOf('GMT')
     );
-    const searchDateStart = searchDateFormatted.substring(
+    const searchDateStart = searchDateTrimmed.substring(
       0,
-      searchDateFormatted.indexOf(`${new Date().getFullYear()}`) + 4
+      searchDateTrimmed.indexOf(`${new Date().getFullYear()}`) + 4
     );
-    const time = searchDateFormatted.substring(searchDateStart.length);
+    const time = searchDateTrimmed.substring(searchDateStart.length);
 
     return `Results as of ${searchDateStart} at ${time}`;
   }
 
   render() {
-    const { patients } = this.props;
-    const { name, nameError, searchError, searchDate } = this.state;
+    const { name, nameError, searchError, searchDate, patients } = this.state;
 
     if (!patients) return <div>Loading...</div>;
 
@@ -173,8 +182,16 @@ class Table extends React.Component {
           </div>
 
           <div className='search-buttons'>
-            <button onClick={this.searchForPatient}>Search</button>
-            <button onClick={this.clearSearch}>Clear Search</button>
+            <Button
+              type='button'
+              onClick={this.searchForPatient}
+              text='Search'
+            />
+            <Button
+              type='button'
+              onClick={this.clearSearch}
+              text='Clear Search'
+            />
           </div>
         </div>
 

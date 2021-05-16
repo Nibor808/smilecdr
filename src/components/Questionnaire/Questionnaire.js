@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import generateResponse from './generateResponse';
 import validateForm from './validateForm';
+import Button from '../Button';
 
 class Questionnaire extends React.Component {
   constructor(props) {
@@ -76,6 +77,7 @@ class Questionnaire extends React.Component {
             }}
           />
           <label htmlFor='allergies-yes'>yes</label>
+
           <input
             type='radio'
             name='allergies'
@@ -198,6 +200,7 @@ class Questionnaire extends React.Component {
             }}
           />
           <label htmlFor='smoker-yes'>yes</label>
+
           <input
             type='radio'
             name='smoker'
@@ -237,6 +240,7 @@ class Questionnaire extends React.Component {
             }}
           />
           <label htmlFor='alcohol-yes'>yes</label>
+
           <input
             type='radio'
             name='alcohol'
@@ -258,16 +262,18 @@ class Questionnaire extends React.Component {
         </div>
 
         <div className='form-btns'>
-          <button type='submit' className='submit-btn' id='submit-btn'>
-            Submit
-          </button>
+          <Button
+            type='submit'
+            klass='submit-btn'
+            id='submit-btn'
+            text='Submit'
+          />
 
-          <button
+          <Button
             type='reset'
             onClick={() => this.setState({ response: '', dob: '' })}
-          >
-            Clear
-          </button>
+            text='Clear'
+          />
         </div>
       </form>
     );

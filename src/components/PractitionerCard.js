@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from './Button';
 
 const PractitionerCard = ({ practitioner, deletePractitioner }) => {
   const renderAlert = practitioner => {
@@ -30,7 +31,11 @@ const PractitionerCard = ({ practitioner, deletePractitioner }) => {
       <p>Gender: {practitioner.gender || 'N/A'}</p>
       <p>D.O.B: {practitioner.dob || 'N/A'}</p>
 
-      <button onClick={() => renderAlert(practitioner)}>Delete</button>
+      <Button
+        type='button'
+        onClick={() => renderAlert(practitioner)}
+        text='Delete'
+      />
     </div>
   );
 };
